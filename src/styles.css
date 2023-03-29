@@ -1,3 +1,25 @@
 body {
-  background-color: blueviolet;
+  background: linear-gradient(
+    180deg,
+    rgba(114, 174, 219, 1) 0%,
+    rgba(228, 165, 192, 1) 60%,
+    rgba(177, 109, 159, 1) 100%
+  );
+  background-image: url("./s-o-c-i-a-l-c-u-t-96A9UTFAMUM-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+h1 {
+  font-family: "Rajdhani", sans-serif;
+}
+h3 {
+  font-family: "Alkatra", cursive;
+  font-weight: thin;
+}
+.wrapper {
+  max-width: 700px;
+  background-color: rgba(235, 246, 255, 0.6);
+  text-align: center;
+  border-radius: 5px;
+  margin: 20px auto;
 }
