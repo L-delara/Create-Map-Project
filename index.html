@@ -14,6 +14,19 @@
       href="https://fonts.googleapis.com/css2?family=Alkatra&family=Rajdhani&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+    <script src="./src/index.js"></script>
+
     <title>Tailored Travel ✈</title>
   </head>
   <body>
@@ -23,16 +36,13 @@
       <div class="options">
         <select name="businesses" id="businesses">
           <option>- What are you looking for?-</option>
-          <option value="">Coffee</option>
-          <option value="">Restaurants</option>
-          <option value="">Hotels</option>
-          <option value="">Markets</option>
+          <option value="">Coffee ☕</option>
+          <option value="">Restaurants 🍴</option>
+          <option value="">Hotels 🛏</option>
+          <option value="">Markets 🛒</option>
         </select>
       </div>
-      <div class="map-box">
-        <!-- map goes here -->
-      </div>
+      <div id="map"></div>
     </div>
-    <script src="./src/index.js"></script>
   </body>
 </html>
