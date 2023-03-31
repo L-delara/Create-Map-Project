@@ -1,19 +1,7 @@
-// What events will your application need? -- select and submit map options
-
-// What APIs will you need and in what order? -- geolocation and local businesses(foursquare)
-
-// How will you obtain the user's location? -- leaflet api
-
-// How will you add the user's location to the map?
-
-// How will you get the selected location from the user? -- on load, get location
-
-// How will you add that information to the map?
-
 //create the map
 const myMap = L.map("map", {
   center: [35.77, -78.79],
-  zoom: 12,
+  zoom: 15,
 });
 
 // add openstreetmap tiles
@@ -27,13 +15,26 @@ L.tileLayer(
   }
 ).addTo(myMap);
 
-//Geolocation pin
-// const marker = L.marker([35.77, -78.79]);
-// marker.addTo(myMap);
+// How to get the location from the user?
+function findPosition(position) {
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
+}
 
-// function findPosition(position) {
-//   console.log(position.coords.latitude);
-//   console.log(position.coords.longitude);
+navigator.geolocation.getCurrentPosition(findPosition);
+
+// add markers to map - current pos., businesses
+
+//select a business type and load the markers
+// function pinOnMap(event){
+
 // }
 
-// navigator.geolocation.getCurrentPosition(findPosition);
+// let businessPicker = document.querySelector("#businesses");
+// businessPicker.addEventListener("change", pinOnMap);
+
+// How will you add the user's location to the map?-- on load, get location
+
+//get businesses (3 each?) from 4square API. (Key = "fsq3pHxQdJSMdNl7XwIh81QbpHXwduC37YdPkZNaD0OnszQ=)
+
+// How will you add that information to the map?

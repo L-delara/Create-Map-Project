@@ -29,10 +29,10 @@
     <title>Tailored Travel ✈</title>
   </head>
   <body>
-    <div class="wrapper">
+    <div id="wrapper">
       <h1>Tailored Travel ✈</h1>
       <h3>Exploring your neighborhood</h3>
-      <div class="options">
+      <div id="options">
         <select name="businesses" id="businesses">
           <option>- What are you looking for?-</option>
           <option value="">Coffee ☕</option>
@@ -40,8 +40,11 @@
           <option value="">Hotels 🛏</option>
           <option value="">Markets 🛒</option>
         </select>
+        <input type="button" value="Search!" />
       </div>
-      <div id="map"></div>
+      <div id="map">
+        <!-- Map fills in here -->
+      </div>
     </div>
     <script src="./src/index.js"></script>
   </body>
