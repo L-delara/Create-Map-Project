@@ -11,17 +11,34 @@ body {
 }
 h1 {
   font-family: "Rajdhani", sans-serif;
+  margin: 10px, 0px, 0px, 0px;
 }
 h3 {
   font-family: "Alkatra", cursive;
   font-weight: thin;
+  margin: 0px;
 }
-.wrapper {
+select {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  font-size: 14px;
+  padding: 3px;
+}
+footer {
+  font-size: 14px;
+  text-align: center;
+  margin: 10px;
+}
+#wrapper {
   max-width: 700px;
   background-color: rgba(235, 246, 255, 0.6);
   text-align: center;
   border-radius: 5px;
   margin: 20px auto;
+}
+#options {
+  margin-bottom: 10px;
 }
 #map {
   width: 650px;

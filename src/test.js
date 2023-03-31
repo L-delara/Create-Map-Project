@@ -1,30 +1,28 @@
-//create the map chunk
+// map object
 const myMap = {
   coordinates: [],
   businesses: [],
   map: {},
   markers: {},
 
-  //create the leaflet map
+  // build leaflet map
   buildMap() {
     this.map = L.map("map", {
       center: this.coordinates,
       zoom: 12,
     });
     // add openstreetmap tiles
-    L.tileLayer(
-      "https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=41061f58f4b647bb94dad0063b961f79",
-      {
-        attribution:
-          '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        apikey: "41061f58f4b647bb94dad0063b961f79",
-        minZoom: "10",
-      }
-    ).addTo(this.map);
-
-    //create a marker- you are here
-    const marker = L.map(this.coordinates);
-    marker.addTo(this.map).bindPopup("<b>You are here</b>").openPopup();
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      minZoom: "12",
+    }).addTo(this.map);
+    // create and add geolocation marker
+    const marker = L.marker(this.coordinates);
+    marker
+      .addTo(this.map)
+      .bindPopup("<p1><b>You are here</b><br></p1>")
+      .openPopup();
   },
 
   // add business markers
@@ -40,6 +38,7 @@ const myMap = {
   },
 };
 
+// get coordinates via geolocation api
 async function getCoords() {
   const pos = await new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -47,16 +46,16 @@ async function getCoords() {
   return [pos.coords.latitude, pos.coords.longitude];
 }
 
-// get businesses from 4square
+// get foursquare businesses
 async function getFoursquare(business) {
   const options = {
     method: "GET",
     headers: {
       Accept: "application/json",
-      Authorization: "fsq3pHxQdJSMdNl7XwIh81QbpHXwduC37YdPkZNaD0OnszQ=",
+      Authorization: "fsq3ATzZbmcGhdeFafr73wZcnJ+LlN6bK+4dh19a7ClS4u8=",
     },
   };
-  let limit = 6;
+  let limit = 5;
   let lat = myMap.coordinates[0];
   let lon = myMap.coordinates[1];
   let response = await fetch(
@@ -68,7 +67,7 @@ async function getFoursquare(business) {
   let businesses = parsedData.results;
   return businesses;
 }
-
+// process foursquare array
 function processBusinesses(data) {
   let businesses = data.map((element) => {
     let location = {
@@ -81,16 +80,15 @@ function processBusinesses(data) {
   return businesses;
 }
 
-// get user's location to the map?-- on load, get location
+// event handlers
+// window load
 window.onload = async () => {
   const coords = await getCoords();
-  console.log(coords);
   myMap.coordinates = coords;
   myMap.buildMap();
 };
 
-//change the business type selection - didn't want a button
-
+// business submit button
 document
   .getElementById("businesses")
   .addEventListener("change", async (event) => {
@@ -100,5 +98,3 @@ document
     myMap.businesses = processBusinesses(data);
     myMap.addMarkers();
   });
-
-//get businesses (3 each?) from 4square API. (Key = "fsq3pHxQdJSMdNl7XwIh81QbpHXwduC37YdPkZNaD0OnszQ=)
